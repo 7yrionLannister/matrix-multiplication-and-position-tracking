@@ -1,6 +1,7 @@
 package ui;
 
 import model.DivideAndConquer;
+import model.Strassen;
 
 public class Main {
 
@@ -24,6 +25,15 @@ public class Main {
 							     {7,7,7,7,7,7,7,7}};
 							     
 	   int[][] C = DivideAndConquer.multiply(A, B);
+
+	   for (int i = 0; i < C.length; i++) {
+		   for (int j = 0; j < C[i].length; j++) {
+			   System.out.print(C[i][j] + " ");
+		   }
+		   System.out.println();
+	   }
+	   System.out.println("****************************************");
+	   C = Strassen.multiply(A, B);
 
 	   for (int i = 0; i < C.length; i++) {
 		   for (int j = 0; j < C[i].length; j++) {
