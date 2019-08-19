@@ -3,6 +3,7 @@ package model;
 public class StandardMatrixOperations {
 	
 	public static int[][] add(int[][] A, int[][] B) {
+		validateDimensions(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for(int i = 0; i < n; i++) {
@@ -14,6 +15,7 @@ public class StandardMatrixOperations {
 	}
 	
 	public static int[][] substract(int[][] A, int[][] B) {
+		validateDimensions(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for(int i = 0; i < n; i++) {
@@ -25,6 +27,7 @@ public class StandardMatrixOperations {
 	}
 	
 	public static int[][] multiply(int[][] A, int[][] B) {
+		validateDimensions(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for (int i = 0; i < n; i++) {
@@ -35,5 +38,11 @@ public class StandardMatrixOperations {
 			}
 		}
 		return C;
+	}
+	
+	public static void validateDimensions(int[][] A, int[][] B) {
+		if(A[0].length != B.length) {
+			throw new IllegalArgumentException("Incompatible dimensions: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
+		}
 	}
 }

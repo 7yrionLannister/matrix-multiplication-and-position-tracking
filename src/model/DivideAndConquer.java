@@ -3,6 +3,11 @@ package model;
 public class DivideAndConquer {
 	
 	public static int[][] multiply(int[][] A, int[][] B) {
+		validateDimensions(A, B);
+		return multiplyRecursive(A, B);
+	}
+	
+	private static int[][] multiplyRecursive(int[][] A, int[][] B) {
 		int n = A.length;
 		int[][] result = new int[n][n];
 		if(n == 1) {
@@ -41,21 +46,31 @@ public class DivideAndConquer {
 		return result;
 	}
 	
-	public static void divide(int[][] m1, int[][] m2, int row, int column) {
-		int n = m1.length;
+	public static void divide(int[][] submatrix, int[][] matrix, int row, int column) {
+		int n = submatrix.length;
         for(int i1 = 0, i2 = row; i1 < n; i1++, i2++) {
             for(int j1 = 0, j2 = column; j1 < n; j1++, j2++) {
-                m1[i1][j1] = m2[i2][j2];
+                submatrix[i1][j1] = matrix[i2][j2];
             }
         }
     }
 	
-	public static void join(int[][] m1, int[][] m2, int row, int column) {
-		int n = m1.length;
+	public static void join(int[][] submatrix, int[][] matrix, int row, int column) {
+		int n = submatrix.length;
         for(int i1 = 0, i2 = row; i1 < n; i1++, i2++) {
             for(int j1 = 0, j2 = column; j1 < n; j1++, j2++) {
-                m2[i2][j2] = m1[i1][j1];
+                matrix[i2][j2] = submatrix[i1][j1];
             }
         }
     }
+	
+	public static void validateDimensions(int[][] A, int[][] B) {
+		//TODO este metodo de validacion aun no esta listo
+		double log2 = Math.log10(A.length)/Math.log10(2);
+		if((((int)(log2) - log2) == 0) &&
+				(A.length != B.length) &&
+				(A[0].length != B[0].length)) {
+			throw new IllegalArgumentException("Incompatible dimensions for divide and conquer: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
+		}
+	}
 }

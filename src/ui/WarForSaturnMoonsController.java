@@ -24,7 +24,7 @@ public class WarForSaturnMoonsController implements Initializable{
     private Button multiplyM;
 
     @FXML
-    void multiplyMatrices(ActionEvent event) {
+    public void multiplyMatrices(ActionEvent event) {
 
     }
 	@Override
