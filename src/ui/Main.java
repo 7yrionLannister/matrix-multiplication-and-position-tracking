@@ -23,9 +23,9 @@ public class Main {
 							     {5,5,5,5,5,5,5,5},
 							     {6,6,6,6,6,6,6,6},
 							     {7,7,7,7,7,7,7,7}};
-							     
+	   long d1 = System.currentTimeMillis();				     
 	   int[][] C = DivideAndConquer.multiply(A, B);
-
+	   System.out.println((System.currentTimeMillis()-d1) + "DIVIDE");
 	   for (int i = 0; i < C.length; i++) {
 		   for (int j = 0; j < C[i].length; j++) {
 			   System.out.print(C[i][j] + " ");
@@ -33,8 +33,10 @@ public class Main {
 		   System.out.println();
 	   }
 	   System.out.println("****************************************");
+	   d1 = System.currentTimeMillis();
 	   C = Strassen.multiply(A, B);
-
+	   System.out.println((System.currentTimeMillis()-d1)+"Strassen");
+	   
 	   for (int i = 0; i < C.length; i++) {
 		   for (int j = 0; j < C[i].length; j++) {
 			   System.out.print(C[i][j] + " ");
