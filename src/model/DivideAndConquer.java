@@ -65,11 +65,11 @@ public class DivideAndConquer {
     }
 	
 	public static void validateDimensions(int[][] A, int[][] B) {
-		//TODO este metodo de validacion aun no esta listo
 		double log2 = Math.log10(A.length)/Math.log10(2);
-		if((((int)(log2) - log2) == 0) &&
-				(A.length != B.length) &&
-				(A[0].length != B[0].length)) {
+		if((int)log2 - log2 != 0 ||
+				A.length != B[0].length ||
+				A[0].length != B.length ||
+				A.length != A[0].length) {
 			throw new IllegalArgumentException("Incompatible dimensions for divide and conquer: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
 		}
 	}

@@ -3,6 +3,11 @@ package model;
 public class Strassen {
 	
 	public static int[][] multiply(int[][] A, int[][] B) {
+		DivideAndConquer.validateDimensions(A, B);
+		return multiplyRecursive(A, B);
+	}
+	
+	private static int[][] multiplyRecursive(int[][] A, int[][] B) {
 		int n = A.length;
 		int[][] result = new int[n][n];
 		if(n == 1) {
