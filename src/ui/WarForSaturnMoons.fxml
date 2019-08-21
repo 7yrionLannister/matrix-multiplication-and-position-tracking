@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,8 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WarForSaturnMoonsController">
    <left>
       <VBox prefHeight="400.0" prefWidth="382.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,13 +27,13 @@
             </Label>
             <HBox prefWidth="200.0">
                <children>
-                  <TextField />
+                  <TextField fx:id="rowsATextField" />
                   <Label text="X">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="colsATextField" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -44,7 +44,7 @@
             </HBox>
             <ScrollPane prefHeight="360.0">
                <content>
-                  <GridPane>
+                  <GridPane fx:id="matrixA">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -63,19 +63,22 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Repeated">
+                              <RadioButton fx:id="repeatARadioButton" mnemonicParsing="false" selected="true" text="Repeated">
                                  <font>
                                     <Font name="Comic Sans MS" size="12.0" />
                                  </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="switchA" />
+                                 </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Unrepeated">
+                              <RadioButton fx:id="notrepeatARadioButton" mnemonicParsing="false" text="Unrepeated" toggleGroup="$switchA">
                                  <font>
                                     <Font name="Comic Sans MS" size="12.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Generate">
+                        <Button mnemonicParsing="false" onAction="#generateMatrixAButtonPressed" text="Generate">
                            <font>
                               <Font name="Comic Sans MS" size="12.0" />
                            </font>
@@ -98,13 +101,13 @@
             </Label>
             <HBox prefWidth="200.0">
                <children>
-                  <TextField />
+                  <TextField fx:id="rowsBTextField" />
                   <Label text="X">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="colsBTextField" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -115,7 +118,7 @@
             </HBox>
             <ScrollPane prefHeight="360.0">
                <content>
-                  <GridPane>
+                  <GridPane fx:id="matrixB">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -134,15 +137,18 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Repeated" />
-                              <RadioButton mnemonicParsing="false" text="Unrepeated">
+                              <RadioButton fx:id="repeatBRadioButton" mnemonicParsing="false" selected="true" text="Repeated">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="switchB" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="notrepeatBRadioButton" mnemonicParsing="false" text="Unrepeated" toggleGroup="$switchB">
                                  <font>
                                     <Font name="Comic Sans MS" size="12.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Generate">
+                        <Button mnemonicParsing="false" onAction="#generateMatrixBButtonPressed" text="Generate">
                            <font>
                               <Font name="Comic Sans MS" size="12.0" />
                            </font>
@@ -163,24 +169,27 @@
          <children>
             <VBox prefHeight="100.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Standard matrix multiplication">
+                  <RadioButton fx:id="smmRadioButton" mnemonicParsing="false" selected="true" text="Standard matrix multiplication">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="multiplicationMethod" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="dcaRadioButton" mnemonicParsing="false" text="Divide and conquer algorithm" toggleGroup="$multiplicationMethod">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Divide and conquer algorithm">
-                     <font>
-                        <Font name="Comic Sans MS" size="12.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Strassen algorithm">
+                  <RadioButton fx:id="saRadioButton" mnemonicParsing="false" text="Strassen algorithm" toggleGroup="$multiplicationMethod">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </RadioButton>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Button" />
+            <Button mnemonicParsing="false" text="Multiply" />
          </children>
          <padding>
             <Insets left="250.0" right="250.0" />

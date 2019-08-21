@@ -27,6 +27,11 @@ public class Predictor {
 		lastBmatrix = B;
 		lastResultMatrix = C;
 	}
+	
+	public int[][] randomMatrix(int rows, int cols, boolean repeatedElements) {
+		//TODO implementme
+		return null;
+	}
 
 	public int[][] getLastAmatrix() {
 		return lastAmatrix;
