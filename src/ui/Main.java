@@ -5,9 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.DivideAndConquer;
-import model.StandardMatrixOperations;
-import model.Strassen;
 
 
 public class Main extends Application {

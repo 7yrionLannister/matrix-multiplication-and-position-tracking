@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
@@ -18,7 +19,7 @@ public class WarForSaturnMoonsController {
     private TextField colsATextField;
 
     @FXML
-    private GridPane matrixA;
+    private ScrollPane matrixAScrollPane;
 
     @FXML
     private RadioButton repeatARadioButton;
@@ -36,7 +37,7 @@ public class WarForSaturnMoonsController {
     private TextField colsBTextField;
 
     @FXML
-    private GridPane matrixB;
+    private ScrollPane matrixBScrollPane;
 
     @FXML
     private RadioButton repeatBRadioButton;
@@ -59,6 +60,9 @@ public class WarForSaturnMoonsController {
     @FXML
     private RadioButton saRadioButton;
     
+    private GridPane matrixA;
+    private GridPane matrixB;
+    
     private Predictor predictor;
     
 	@FXML
@@ -74,6 +78,11 @@ public class WarForSaturnMoonsController {
 		smmRadioButton.setUserData(Predictor.STANDARD);
 		dcaRadioButton.setUserData(Predictor.DIVIDE_CONQUER);
 		saRadioButton.setUserData(Predictor.STRASSEN);
+		
+		matrixA = new GridPane();
+		matrixAScrollPane.setContent(matrixA);
+		matrixB = new GridPane();
+		matrixBScrollPane.setContent(matrixB);
 	}
 	
 	@FXML
@@ -82,8 +91,8 @@ public class WarForSaturnMoonsController {
 		if(!rowsATextField.getText().isEmpty() && !colsATextField.getText().isEmpty()) {
 			int mtrx[][] = predictor.randomMatrix(Integer.parseInt(rowsATextField.getText()), Integer.parseInt(colsATextField.getText()), (boolean)switchA.getSelectedToggle().getUserData());
 			Label box;
-			int evenOrOdd = -1;
 			for(int i = 0; i < mtrx.length; i++) {
+				int evenOrOdd = i;
 				for(int j = 0; j < mtrx[i].length; j++) {
 					evenOrOdd += 1;
 					box = new Label(""+mtrx[i][j]);
@@ -109,8 +118,8 @@ public class WarForSaturnMoonsController {
 		if(!rowsBTextField.getText().isEmpty() && !colsBTextField.getText().isEmpty()) {
 			int mtrx[][] = predictor.randomMatrix(Integer.parseInt(rowsBTextField.getText()), Integer.parseInt(colsBTextField.getText()), (boolean)switchB.getSelectedToggle().getUserData());
 			Label box;
-			int evenOrOdd = -1;
 			for(int i = 0; i < mtrx.length; i++) {
+				int evenOrOdd = i;
 				for(int j = 0; j < mtrx[i].length; j++) {
 					evenOrOdd += 1;
 					box = new Label(""+mtrx[i][j]);
