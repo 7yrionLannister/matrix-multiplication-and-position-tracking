@@ -70,7 +70,7 @@ public class DivideAndConquer {
 				A.length != B[0].length ||
 				A[0].length != B.length ||
 				A.length != A[0].length) {
-			throw new IllegalArgumentException("Incompatible dimensions for divide and conquer: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
+			throw new IllegalArgumentException("Incompatible dimensions for divide and conquer algorithm: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
 		}
 	}
 }
