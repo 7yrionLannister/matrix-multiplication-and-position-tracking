@@ -158,10 +158,10 @@
                   </RadioButton>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Multiply" />
+            <Button mnemonicParsing="false" onAction="#multiplyButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Multiply" />
          </children>
          <padding>
-            <Insets left="250.0" right="250.0" />
+            <Insets left="230.0" right="230.0" />
          </padding>
       </HBox>
    </bottom>

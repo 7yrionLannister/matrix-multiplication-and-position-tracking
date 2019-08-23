@@ -7,29 +7,6 @@ public class Predictor {
 	public final static String DIVIDE_CONQUER = "Divide and conquer";
 	public final static String STRASSEN = "Strassen";
 	
-	private int[][] lastAmatrix;
-	private int[][] lastBmatrix;
-	private int[][] lastResultMatrix;
-	
-	public void multiply(int[][] A, int[][] B, String desiredMethod) {
-		int[][] C = null;
-		switch(desiredMethod) {
-		case STANDARD:
-			C = standardMultiply(A, B);
-			break;
-		case DIVIDE_CONQUER:
-			C = divideAndConquerMultiply(A, B);
-			break;
-		case STRASSEN:
-			C = strassenMultiply(A, B);
-			break;
-		}
-		//If it arises this point then the matrices were multiplied without problems, so save the history
-		lastAmatrix = A;
-		lastBmatrix = B;
-		lastResultMatrix = C;
-	}
-	
 	public int[][] randomMatrix(int rows, int cols, boolean repeatedElements) {
 		ArrayList<Integer> nums = new ArrayList<>();
 		int[][] rm = new int[rows][cols];
@@ -50,32 +27,8 @@ public class Predictor {
 		return rm;
 	}
 
-	public int[][] getLastAmatrix() {
-		return lastAmatrix;
-	}
-
-	public void setLastAmatrix(int[][] lastAmatrix) {
-		this.lastAmatrix = lastAmatrix;
-	}
-
-	public int[][] getLastBmatrix() {
-		return lastBmatrix;
-	}
-
-	public void setLastBmatrix(int[][] lastBmatrix) {
-		this.lastBmatrix = lastBmatrix;
-	}
-
-	public int[][] getLastResultMatrix() {
-		return lastResultMatrix;
-	}
-
-	public void setLastResultMatrix(int[][] lastResultMatrix) {
-		this.lastResultMatrix = lastResultMatrix;
-	}
-	
 	public int[][] add(int[][] A, int[][] B) {
-		validateDimensionsSTAND(A, B);
+		validateDimensionsStandard(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for(int i = 0; i < n; i++) {
@@ -87,7 +40,7 @@ public class Predictor {
 	}
 	
 	public int[][] substract(int[][] A, int[][] B) {
-		validateDimensionsSTAND(A, B);
+		validateDimensionsStandard(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for(int i = 0; i < n; i++) {
@@ -99,7 +52,7 @@ public class Predictor {
 	}
 	
 	public int[][] standardMultiply(int[][] A, int[][] B) {
-		validateDimensionsSTAND(A, B);
+		validateDimensionsStandard(A, B);
 		int n = A.length;
 		int[][] C = new int[n][n];
 		for (int i = 0; i < n; i++) {
@@ -112,14 +65,14 @@ public class Predictor {
 		return C;
 	}
 	
-	public void validateDimensionsSTAND(int[][] A, int[][] B) {
+	public void validateDimensionsStandard(int[][] A, int[][] B) {
 		if(A[0].length != B.length) {
 			throw new IllegalArgumentException("Incompatible dimensions: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
 		}
 	}
 	
 	public int[][] divideAndConquerMultiply(int[][] A, int[][] B) {
-		validateDimensionsDIV(A, B);
+		validateDimensionsDivideAndConquer(A, B);
 		return divideAndConquerMultiplyRecursive(A, B);
 	}
 	
@@ -180,7 +133,8 @@ public class Predictor {
         }
     }
 	
-	public void validateDimensionsDIV(int[][] A, int[][] B) {
+	public void validateDimensionsDivideAndConquer(int[][] A, int[][] B) {
+		validateDimensionsStandard(A, B);
 		double log2 = Math.log10(A.length)/Math.log10(2);
 		if((int)log2 - log2 != 0 ||
 				A.length != B[0].length ||
@@ -191,7 +145,7 @@ public class Predictor {
 	}
 	
 	public int[][] strassenMultiply(int[][] A, int[][] B) {
-		validateDimensionsDIV(A, B);
+		validateDimensionsDivideAndConquer(A, B);
 		return strassenMultiplyRecursive(A, B);
 	}
 
@@ -240,5 +194,18 @@ public class Predictor {
 			join(C4, result, n/2, n/2);
 		}
 		return result;
+	}
+	
+	public boolean isPrime(int num) {
+		boolean prime = true;
+		if(num == 1) {
+			prime = false;
+		}
+		for(int i = 2; i <= num/2 && prime; ++i) {
+            if(num % i == 0) {
+                prime = false;
+            }
+        }
+		return prime;
 	}
 }
