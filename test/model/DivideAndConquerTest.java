@@ -64,11 +64,17 @@ class DivideAndConquerTest {
 		setupStage1();
 		int [][] C = predictor.randomMatrix(3, 3, true);
 		int totalElements = 0;
+		int repeatedElements = 0;
 		for(int i = 0; i < C.length; i++) 
 			for(int j = 0; j< C[i].length; j++) {
+				if (C[i][j] == C[j][i]) {
+					repeatedElements++;
+				}
+				System.out.println(C[i][j]);
 				totalElements++;
 			}
-		assertTrue(totalElements == 9, "A matrix 3x3 was created");
+		System.out.print(repeatedElements);
+		assertTrue(totalElements == 9 && repeatedElements > 0, "A matrix 3x3 was created with repeated values");
 		}
 
 }
