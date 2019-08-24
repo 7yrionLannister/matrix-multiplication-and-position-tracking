@@ -29,10 +29,11 @@ public class Predictor {
 
 	public int[][] add(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
-		int n = A.length;
-		int[][] C = new int[n][n];
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
+		int rows = A.length;
+		int cols = A[0].length;
+		int[][] C = new int[rows][cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
 				C[i][j] = A[i][j] + B[i][j];
 			}
 		}
@@ -41,10 +42,11 @@ public class Predictor {
 	
 	public int[][] substract(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
-		int n = A.length;
-		int[][] C = new int[n][n];
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
+		int rows = A.length;
+		int cols = A[0].length;
+		int[][] C = new int[rows][cols];
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < cols; j++) {
 				C[i][j] = A[i][j] - B[i][j];
 			}
 		}
@@ -53,11 +55,12 @@ public class Predictor {
 	
 	public int[][] standardMultiply(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
-		int n = A.length;
-		int[][] C = new int[n][n];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				for (int k = 0; k < n; k++) {
+		int rows = A.length;
+		int cols = B[0].length;
+		int[][] C = new int[rows][cols];
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				for (int k = 0; k < A[0].length; k++) {
 					C[i][j] += A[i][k]*B[k][j];
 				}
 			}
