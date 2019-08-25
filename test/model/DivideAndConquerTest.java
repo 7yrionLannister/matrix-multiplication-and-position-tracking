@@ -83,7 +83,7 @@ class DivideAndConquerTest {
 		}
 	@Test
 	void standardMultiply1() {
-		
+		setupStage1();
 	}
 
 }
