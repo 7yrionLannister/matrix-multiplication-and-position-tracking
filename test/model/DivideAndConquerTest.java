@@ -2,6 +2,8 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 class DivideAndConquerTest {
@@ -62,19 +64,26 @@ class DivideAndConquerTest {
 	@Test
 	void randomMatrix() {
 		setupStage1();
-		int [][] C = predictor.randomMatrix(3, 3, true);
+		int [][] C = predictor.randomMatrix(100, 100, false);
 		int totalElements = 0;
 		int repeatedElements = 0;
 		for(int i = 0; i < C.length; i++) 
 			for(int j = 0; j< C[i].length; j++) {
-				if (C[i][j] == C[j][i]) {
+				ArrayList<Integer> repeated = new ArrayList<>();
+				if(!repeated.contains(C[i][j])) {
+					repeated.add(C[i][j]);
+				} else {
 					repeatedElements++;
 				}
 				System.out.println(C[i][j]);
 				totalElements++;
 			}
-		System.out.print(repeatedElements);
-		assertTrue(totalElements == 9 && repeatedElements > 0, "A matrix 3x3 was created with repeated values");
+		System.out.println(repeatedElements);
+		assertTrue(totalElements == 10000 && repeatedElements == 0, "A matrix 3x3 was created with repeated values");
 		}
+	@Test
+	void standardMultiply1() {
+		
+	}
 
 }
