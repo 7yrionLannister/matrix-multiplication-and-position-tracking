@@ -7,7 +7,7 @@ public class Predictor {
 	public final static String DIVIDE_CONQUER = "Divide and conquer";
 	public final static String STRASSEN = "Strassen";
 	
-	public int[][] randomMatrix(int rows, int cols, boolean repeatedElements) {
+	public int[][] generateRandomMatrix(int rows, int cols, boolean repeatedElements) {
 		ArrayList<Integer> nums = new ArrayList<>();
 		int[][] rm = new int[rows][cols];
 		for(int i = 0; i < rows; i++) {
@@ -15,9 +15,9 @@ public class Predictor {
 				if(repeatedElements) {
 					rm[i][j] = (int)(Math.random()*800+1);
 				} else {
-					int n = (int)(Math.random()*1000+1);
+					int n = (int)(Math.random()*1000000+1);
 					while(nums.contains(n)) {
-						n = (int)(Math.random()*1000+1);
+						n = (int)(Math.random()*1000000+1);
 					}
 					nums.add(n);
 					rm[i][j] = n;
