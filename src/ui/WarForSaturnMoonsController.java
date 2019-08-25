@@ -18,58 +18,34 @@ import model.Predictor;
 
 public class WarForSaturnMoonsController {
 
-    @FXML
-    private TextField rowsATextField;
-
-    @FXML
-    private TextField colsATextField;
-
-    @FXML
-    private ScrollPane matrixAScrollPane;
-
-    @FXML
-    private RadioButton repeatARadioButton;
-
-    @FXML
-    private ToggleGroup switchA;
-
-    @FXML
-    private RadioButton notrepeatARadioButton;
-
-    @FXML
-    private TextField rowsBTextField;
-
-    @FXML
-    private TextField colsBTextField;
-
-    @FXML
-    private ScrollPane matrixBScrollPane;
-
-    @FXML
-    private RadioButton repeatBRadioButton;
-
-    @FXML
-    private ToggleGroup switchB;
-
-    @FXML
-    private RadioButton notrepeatBRadioButton;
-
-    @FXML
-    private RadioButton smmRadioButton;
-
-    @FXML
-    private ToggleGroup multiplicationMethod;
-
-    @FXML
-    private RadioButton dcaRadioButton;
-
-    @FXML
-    private RadioButton saRadioButton;
+    @FXML private TextField rowsATextField;
+    @FXML private TextField colsATextField;
+    @FXML private ScrollPane matrixAScrollPane;
+    @FXML private RadioButton repeatARadioButton;
+    @FXML private ToggleGroup switchA;
+    @FXML private RadioButton notrepeatARadioButton;
+    @FXML private TextField rowsBTextField;
+    @FXML private TextField colsBTextField;
+    @FXML private ScrollPane matrixBScrollPane;
+    @FXML private RadioButton repeatBRadioButton;
+    @FXML private ToggleGroup switchB;
+    @FXML private RadioButton notrepeatBRadioButton;
+    @FXML private RadioButton smmRadioButton;
+    @FXML private ToggleGroup multiplicationMethod;
+    @FXML private RadioButton dcaRadioButton;
+    @FXML private RadioButton saRadioButton;
     
+    /**It represents the grid where the last Mars troops positions reported will be.
+   	 */
     private GridPane matrixA;
+    /**It represents the grid where the matrix which we will be able to find the new actual Mars troops positions will be.
+   	 */
     private GridPane matrixB;
-    
+    /**It represents the matrix with last Mars troops positions reported.
+   	 */
     private int[][] A;
+    /**It represents the matrix which we will be able to find the new actual Mars troops positions.
+   	 */
     private int[][] B;
     
     private Predictor predictor;
