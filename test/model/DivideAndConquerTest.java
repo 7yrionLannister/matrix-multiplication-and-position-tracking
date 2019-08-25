@@ -70,7 +70,7 @@ class DivideAndConquerTest {
 		int [][] C = predictor.generateRandomMatrix(rows, cols, false);
 		ArrayList<Integer> trail = new ArrayList<>();
 		for(int i = 0; i < rows; i++) 
-			for(int j = 0; j< cols; j++) {System.out.println(i + " " + j);
+			for(int j = 0; j< cols; j++) {
 				if(!trail.contains(C[i][j])) {
 					trail.add(C[i][j]);
 				} else {
@@ -79,6 +79,7 @@ class DivideAndConquerTest {
 			}
 		assertTrue(trail.size() == (rows*cols) && C.length == rows && C[0].length == cols, "The matrix was created without repeated values but the size does not correspond to the requested");
 	}
+<<<<<<< HEAD
 
 	@Test
 	void standardMultiply1() {
@@ -95,5 +96,10 @@ class DivideAndConquerTest {
 		result [2][2] = 98;
 		
 		predictor.standardMultiply(A, B);
+=======
+	
+	public void standardMultiply1() {
+
+>>>>>>> 593c6c78dfd1d3cd259ca7de38dbfcf4ffbc418d
 	}
 }

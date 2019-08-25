@@ -15,9 +15,10 @@ public class Predictor {
 				if(repeatedElements) {
 					rm[i][j] = (int)(Math.random()*800+1);
 				} else {
-					int n = (int)(Math.random()*1000000+1);
+					int t = (System.currentTimeMillis()%2==0 ? -1: 1);
+					int n = (int)(Math.random()*1000000+1)*t;
 					while(nums.contains(n)) {
-						n = (int)(Math.random()*1000000+1);
+						n = (int)(Math.random()*1000000+1)*t;
 					}
 					nums.add(n);
 					rm[i][j] = n;
