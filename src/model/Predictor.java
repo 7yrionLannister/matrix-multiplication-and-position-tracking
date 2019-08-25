@@ -3,10 +3,22 @@ package model;
 import java.util.ArrayList;
 
 public class Predictor {
+	/**It represents a constant in order to use the only the standard multiply method.
+   	 */
 	public final static String STANDARD = "Standard";
+	/**It represents a constant in order to use the only the divide and conquer multiply method.
+   	 */
 	public final static String DIVIDE_CONQUER = "Divide and conquer";
+	/**It represents a constant in order to use the only the strassen multiply method.
+   	 */
 	public final static String STRASSEN = "Strassen";
-	
+	/**This method generates a random matrix specifying its number of rows and columns and if there may be some repeated
+	 * values or not inside it.
+	 * @param rows An integer that represents the number of rows for the wished matrix.
+	 * @param cols An integer that represents the number of columns for the wished matrix.
+	 * @param repeatedElements A boolean that represents if the matrix could have or not repeated values.
+	 * @return A matrix of rows*cols dimension.
+   	 */
 	public int[][] generateRandomMatrix(int rows, int cols, boolean repeatedElements) {
 		ArrayList<Integer> nums = new ArrayList<>();
 		int[][] rm = new int[rows][cols];
@@ -27,7 +39,11 @@ public class Predictor {
 		}
 		return rm;
 	}
-
+	/**This method adds two sub-matrices A and B.
+	 * @param A A sub-matrix from the grand matrix of last positions of 2^nx2^n dimension.
+	 * @param B A sub-matrix from the grand predictor matrix of 2^nx2^n dimension.
+	 * @return A sub-matrix created from the A and B adding.
+   	 */
 	public int[][] add(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
 		int rows = A.length;
@@ -40,8 +56,12 @@ public class Predictor {
 		}
 		return C;
 	}
-	
-	public int[][] substract(int[][] A, int[][] B) {
+	/**This method subtracts two sub-matrices A and B.
+	 * @param A A sub-matrix from the grand matrix of last positions of 2^nx2^n dimension.
+	 * @param B A sub-matrix from the grand predictor matrix of 2^nx2^n dimension.
+	 * @return A sub-matrix created from the A and B subtracting.
+   	 */
+	public int[][] subtract(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
 		int rows = A.length;
 		int cols = A[0].length;
@@ -53,7 +73,11 @@ public class Predictor {
 		}
 		return C;
 	}
-	
+	/**This method multiplies two matrices A and B in the standard way.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+	 * @return A matrix with the actual Mars troops positions.
+   	 */
 	public int[][] standardMultiply(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
 		int rows = A.length;
@@ -68,18 +92,29 @@ public class Predictor {
 		}
 		return C;
 	}
-	
+	/**This method verifies if the matrix A and B have correct dimensions to be multiplied between them by the standard way.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+   	 */
 	public void validateDimensionsStandard(int[][] A, int[][] B) {
 		if(A[0].length != B.length) {
 			throw new IllegalArgumentException("Incompatible dimensions: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
 		}
 	}
-	
+	/**This method multiplies two matrices A and B in the divide and conquer way.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+	 * @return A matrix with the actual Mars troops positions.
+   	 */
 	public int[][] divideAndConquerMultiply(int[][] A, int[][] B) {
 		validateDimensionsDivideAndConquer(A, B);
 		return divideAndConquerMultiplyRecursive(A, B);
 	}
-	
+	/**This method multiplies two matrices A and B in the divide and conquer way through a recursive structure.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+	 * @return A matrix with the actual Mars troops positions.
+   	 */
 	private int[][] divideAndConquerMultiplyRecursive(int[][] A, int[][] B) {
 		int n = A.length;
 		int[][] result = new int[n][n];
@@ -118,7 +153,12 @@ public class Predictor {
 		}
 		return result;
 	}
-	
+	/**This method divide a matrix in four sub-matrices of the same dimension.
+	 * @param submatrix A matrix that represent one of the grand matrix quarters.
+	 * @param matrix A matrix that represents the grand matrix.
+	 * @param row An integer that represents the number of rows for the division.
+	 * @param column An integer that represents the number of columns for the division.
+	 */
 	public void divide(int[][] submatrix, int[][] matrix, int row, int column) {
 		int n = submatrix.length;
         for(int i1 = 0, i2 = row; i1 < n; i1++, i2++) {
@@ -127,7 +167,12 @@ public class Predictor {
             }
         }
     }
-	
+	/**This method joins a sub-matrix into a grand matrix.
+	 * @param submatrix A matrix that represent one of the grand matrix quarters.
+	 * @param matrix A matrix that represents the grand matrix.
+	 * @param row An integer that represents the number of rows for the joining.
+	 * @param column An integer that represents the number of columns for the joining.
+	 */
 	public void join(int[][] submatrix, int[][] matrix, int row, int column) {
 		int n = submatrix.length;
         for(int i1 = 0, i2 = row; i1 < n; i1++, i2++) {
@@ -136,7 +181,10 @@ public class Predictor {
             }
         }
     }
-	
+	/**This method verifies if the matrix A and B have 2^nx2^n dimensions to be multiplied between them by divide and conquer or strassen way.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+   	 */
 	public void validateDimensionsDivideAndConquer(int[][] A, int[][] B) {
 		validateDimensionsStandard(A, B);
 		double log2 = Math.log10(A.length)/Math.log10(2);
@@ -147,12 +195,20 @@ public class Predictor {
 			throw new IllegalArgumentException("Incompatible dimensions for divide and conquer algorithm: A(" + A.length + "," + A[0].length + ") and B(" + B.length + "," + B[0].length + ")");
 		}
 	}
-	
+	/**This method multiplies two matrices A and B in the strassen way.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+	 * @return A matrix with the actual Mars troops positions.
+   	 */
 	public int[][] strassenMultiply(int[][] A, int[][] B) {
 		validateDimensionsDivideAndConquer(A, B);
 		return strassenMultiplyRecursive(A, B);
 	}
-
+	/**This method multiplies two matrices A and B in the strassen way through a recursive structure.
+	 * @param A A matrix of last positions.
+	 * @param B A predictor matrix.
+	 * @return A matrix with the actual Mars troops positions.
+   	 */
 	private int[][] strassenMultiplyRecursive(int[][] A, int[][] B) {
 		int n = A.length;
 		int[][] result = new int[n][n];
@@ -181,16 +237,16 @@ public class Predictor {
 
 			int[][] P = strassenMultiplyRecursive(add(A1, A4),add(B1, B4));
 			int[][] Q = strassenMultiplyRecursive(add(A3, A4), B1);
-			int[][] R = strassenMultiplyRecursive(A1, substract(B2, B4));
-			int[][] S = strassenMultiplyRecursive(A4, substract(B3, B1));
+			int[][] R = strassenMultiplyRecursive(A1, subtract(B2, B4));
+			int[][] S = strassenMultiplyRecursive(A4, subtract(B3, B1));
 			int[][] T = strassenMultiplyRecursive(add(A1, A2), B4);
-			int[][] U = strassenMultiplyRecursive(substract(A3, A1),add(B1, B2));
-			int[][] V = strassenMultiplyRecursive(substract(A2, A4),add(B3, B4));
+			int[][] U = strassenMultiplyRecursive(subtract(A3, A1),add(B1, B2));
+			int[][] V = strassenMultiplyRecursive(subtract(A2, A4),add(B3, B4));
 
-			int[][] C1 = add(add(P, substract(S, T)), V);
+			int[][] C1 = add(add(P, subtract(S, T)), V);
 			int[][] C2 = add(R, T);
 			int[][] C3 = add(Q, S);
-			int[][] C4 = add(add(P, substract(R, Q)), U);
+			int[][] C4 = add(add(P, subtract(R, Q)), U);
 
 			join(C1, result, 0, 0);
 			join(C2, result, 0, n/2);
@@ -199,7 +255,10 @@ public class Predictor {
 		}
 		return result;
 	}
-	
+	/**This method verifies if an integer is prime or not.
+	 * @param num An integer that represents the value to verify.
+	 * @return A boolean showing if the integer arrived as parameter is prime or not.
+	 */
 	public boolean isPrime(int num) {
 		boolean prime = true;
 		if(num == 1) {
