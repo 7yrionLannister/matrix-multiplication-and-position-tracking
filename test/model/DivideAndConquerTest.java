@@ -78,8 +78,7 @@ class DivideAndConquerTest {
 			}
 		assertTrue(trail.size() == (rows*cols) && C.length == rows && C[0].length == cols, "The matrix was created without repeated values but the size does not correspond to the requested");
 	}
-
-	@Test
+	
 	public void standardMultiply1() {
 
 	}
