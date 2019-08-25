@@ -48,20 +48,20 @@ class DivideAndConquerTest {
 		A = new int[4][4];
 		B = new int[4][4];
 		A[0][0] = 16;      B[0][0] = 5;
-		A[0][1] = -6;	   B[0][1] = 5;
-		A[0][2] = 2;	   B[0][2] = 13;
-		A[0][3] = 0;       B[0][3] = 0;
-		A[1][0] = 9;       B[1][0] = 3;
+		A[1][0] = -6;	   B[1][0] = 5;
+		A[2][0] = 2;	   B[2][0] = 13;
+		A[3][0] = 0;       B[3][0] = 0;
+		A[0][1] = 9;       B[0][1] = 3;
 		A[1][1] = 0;       B[1][1] = 6;
-		A[1][2] = 3;       B[1][2] = 8;
-		A[1][3] = 58;      B[1][3] = 8;
-		A[2][0] = 7;       B[2][0] = 7;
-		A[2][1] = 8;       B[2][1] = 4;
+		A[2][1] = 3;       B[2][1] = 8;
+		A[3][1] = 58;      B[3][1] = 8;
+		A[0][2] = 7;       B[0][2] = 7;
+		A[1][2] = 8;       B[1][2] = 4;
 		A[2][2] = 5;       B[2][2] = 2;
-		A[2][3] = 1;       B[2][3] = 0;
-		A[3][0] = 6;       B[3][0] = 9;
-		A[3][1] = 11;      B[3][1] = 6;
-		A[3][2] = 4;       B[3][2] = 6;
+		A[3][2] = 1;       B[3][2] = 0;
+		A[0][3] = 6;       B[0][3] = 9;
+		A[1][3] = 11;      B[1][3] = 6;
+		A[2][3] = 4;       B[2][3] = 6;
 		A[3][3] = 6;       B[3][3] = 1;
 	}
 	@Test
@@ -104,5 +104,15 @@ class DivideAndConquerTest {
 				}
 			}
 		assertTrue(elementIsNotThere == 0, "A matrix 3x3 with the Mars troops locations was yield");
+	}
+	@Test
+	void standardMultiply2(){
+		setupStage2();
+		try {
+		int [][] result = predictor.standardMultiply(A, B);
+		assertNull(result[0][0]);
+		} catch (Exception e) {
+			fail("Incorrect Dimensions");
+		}
 	}
 }
