@@ -69,7 +69,7 @@ class DivideAndConquerTest {
 		int [][] C = predictor.generateRandomMatrix(rows, cols, false);
 		ArrayList<Integer> trail = new ArrayList<>();
 		for(int i = 0; i < rows; i++) 
-			for(int j = 0; j< cols; j++) {System.out.println(i + " " + j);
+			for(int j = 0; j< cols; j++) {
 				if(!trail.contains(C[i][j])) {
 					trail.add(C[i][j]);
 				} else {
