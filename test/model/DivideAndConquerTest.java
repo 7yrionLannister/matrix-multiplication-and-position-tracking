@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
- 
+
 public class DivideAndConquerTest {
 	private Predictor predictor; 
 	private int[][] A;
@@ -24,8 +24,8 @@ public class DivideAndConquerTest {
 		A[0][2] = 7;       B[0][2] = 73;
 		A[1][2] = 4;       B[1][2] = 4;
 		A[2][2] = 13;      B[2][2] = 1;
-
 	}
+
 	public void setupStage2() {
 		predictor = new Predictor();
 		A = new int[4][3];
@@ -43,6 +43,7 @@ public class DivideAndConquerTest {
 		A[2][2] = 8;       B[2][2] = 7;
 		A[3][2] = 3;       B[3][2] = 0;
 	}
+
 	public void setupStage3() {
 		predictor = new Predictor();
 		A = new int[4][4];
@@ -64,6 +65,7 @@ public class DivideAndConquerTest {
 		A[2][3] = 4;       B[2][3] = 6;
 		A[3][3] = 6;       B[3][3] = 1;
 	}
+
 	@Test
 	public void generateRandomMatrixWithoutRepeatedValues() {
 		setupStage1();
@@ -83,7 +85,7 @@ public class DivideAndConquerTest {
 	}
 
 	@Test
-	public void standardMultiply1() {
+	public void standardMultiplyWithValidInput() {
 		setupStage1();
 		int[][] result = new int[3][3];
 		result [0][0] = 80;
@@ -96,26 +98,30 @@ public class DivideAndConquerTest {
 		result [1][2] = 600;
 		result [2][2] = 824;	
 		int[][] C = predictor.standardMultiply(A, B);
-		int elementIsNotThere = 0;
-		for(int i = 0; i < C.length; i++) 
+
+		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
+		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");
+		for(int i = 0; i < C.length; i++) {
 			for(int j = 0; j< C[i].length; j++) {
-				if(!(C[i][j] == result[i][j])) {
-					elementIsNotThere++;
+				if(C[i][j] != result[i][j]) {
+					fail("The resulting matrix does not contain the correct answer");
 				}
 			}
-		assertTrue(elementIsNotThere == 0, "A matrix 3x3 with the Mars troops locations was yield");
+		}
 	}
+
 	@Test
-	public void standardMultiply2(){
+	public void standardMultiplyWithInvalidInput(){
 		setupStage2();
 		try {
-		 predictor.standardMultiply(A, B);
-		 fail("A exception was waited");
+			predictor.standardMultiply(A, B);
+			fail("A exception was waited");
 		} catch (Exception e) {
 		}
 	}
+	
 	@Test
-	public void divideAndConquer1(){
+	public void divideAndConquerMultiplyWithValidInput(){
 		setupStage3();
 		int [][] result = new int[4][4];
 		result [0][0] = 216;
@@ -135,18 +141,29 @@ public class DivideAndConquerTest {
 		result [2][3] = 70;
 		result [3][3] = 360;
 		int[][] C = predictor.divideAndConquerMultiply(A, B);
-		int elementIsNotThere = 0;
-		for(int i = 0; i < C.length; i++) 
+		
+		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
+		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");
+		
+		for(int i = 0; i < C.length; i++) {
 			for(int j = 0; j< C[i].length; j++) {
-				if(!(C[i][j] == result[i][j])) {
-					elementIsNotThere++;
+				if(C[i][j] != result[i][j]) {
+					fail("The resulting matrix does not contain the correct answer");
 				}
 			}
-		assertTrue(elementIsNotThere == 0, "A matrix 4x4 with the Mars troops locations was yield");
+		}
 	}
+	
 	@Test
-	public void divideAndConquer2(){
+	public void divideAndConquerMultiplyWithInvalidInput(){
 		setupStage2();
+		try {
+			predictor.divideAndConquerMultiply(A, B);
+			fail("A exception was waited");
+		} catch (Exception e) {
+		}
+		
+		setupStage1();
 		try {
 			predictor.divideAndConquerMultiply(A, B);
 			fail("A exception was waited");
@@ -154,7 +171,7 @@ public class DivideAndConquerTest {
 		}
 	}
 	@Test
-	public void strassen1() {
+	public void strassenMultiplyWithValidInput() {
 		setupStage3();
 		int [][] result = new int[4][4];
 		result [0][0] = 216;
@@ -174,20 +191,31 @@ public class DivideAndConquerTest {
 		result [2][3] = 70;
 		result [3][3] = 360;
 		int[][] C = predictor.strassenMultiply(A, B);
-		int elementIsNotThere = 0;
-		for(int i = 0; i < C.length; i++) 
+		
+		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
+		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");
+		
+		for(int i = 0; i < C.length; i++) {
 			for(int j = 0; j< C[i].length; j++) {
-				if(!(C[i][j] == result[i][j])) {
-					elementIsNotThere++;
+				if(C[i][j] != result[i][j]) {
+					fail("The resulting matrix does not contain the correct answer");
 				}
 			}
-		assertTrue(elementIsNotThere == 0, "A matrix 4x4 with the Mars troops locations was yield");
+		}
 	}
+	
 	@Test
-	public void strassen2() {
+	public void strassenMultiplyWithInvalidInput() {
 		setupStage2();
 		try {
-			predictor.standardMultiply(A, B);
+			predictor.strassenMultiply(A, B);
+			fail("A exception was waited");
+		} catch (Exception e) {
+		}
+		
+		setupStage1();
+		try {
+			predictor.strassenMultiply(A, B);
 			fail("A exception was waited");
 		} catch (Exception e) {			
 		}
