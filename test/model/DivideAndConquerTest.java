@@ -83,7 +83,7 @@ class DivideAndConquerTest {
 	}
 
 	@Test
-	void standardMultiply1() {
+	public void standardMultiply1() {
 		setupStage1();
 		int[][] result = new int[3][3];
 		result [0][0] = 80;
@@ -106,12 +106,90 @@ class DivideAndConquerTest {
 		assertTrue(elementIsNotThere == 0, "A matrix 3x3 with the Mars troops locations was yield");
 	}
 	@Test
-	void standardMultiply2(){
+	public void standardMultiply2(){
 		setupStage2();
 		try {
-		predictor.standardMultiply(A, B);
+		 predictor.standardMultiply(A, B);
+		 fail("A exception was waited");
 		} catch (Exception e) {
-			assert(true);
 		}
 	}
-}
+	@Test
+	public void divideAndConquer1(){
+		setupStage3();
+		int [][] result = new int[4][4];
+		result [0][0] = 216;
+		result [1][0] = 74;
+		result [2][0] = 90;
+		result [3][0] = 303;
+		result [0][1] = 206;
+		result [1][1] = 134;
+		result [2][1] = 96;
+		result [3][1] = 404;
+		result [0][2] = 162;
+		result [1][2] = -26;
+		result [2][2] = 36;
+		result [3][2] = 234;
+		result [0][3] = 246;
+		result [1][3] = 5;
+		result [2][3] = 70;
+		result [3][3] = 360;
+		int[][] C = predictor.divideAndConquerMultiply(A, B);
+		int elementIsNotThere = 0;
+		for(int i = 0; i < C.length; i++) 
+			for(int j = 0; j< C[i].length; j++) {
+				if(!(C[i][j] == result[i][j])) {
+					elementIsNotThere++;
+				}
+			}
+		assertTrue(elementIsNotThere == 0, "A matrix 4x4 with the Mars troops locations was yield");
+	}
+	@Test
+	public void divideAndConquer2(){
+		setupStage2();
+		try {
+			predictor.divideAndConquerMultiply(A, B);
+			fail("A exception was waited");
+		} catch (Exception e) {			
+		}
+	}
+	@Test
+	public void strassen1() {
+		setupStage3();
+		int [][] result = new int[4][4];
+		result [0][0] = 216;
+		result [1][0] = 74;
+		result [2][0] = 90;
+		result [3][0] = 303;
+		result [0][1] = 206;
+		result [1][1] = 134;
+		result [2][1] = 96;
+		result [3][1] = 404;
+		result [0][2] = 162;
+		result [1][2] = -26;
+		result [2][2] = 36;
+		result [3][2] = 234;
+		result [0][3] = 246;
+		result [1][3] = 5;
+		result [2][3] = 70;
+		result [3][3] = 360;
+		int[][] C = predictor.strassenMultiply(A, B);
+		int elementIsNotThere = 0;
+		for(int i = 0; i < C.length; i++) 
+			for(int j = 0; j< C[i].length; j++) {
+				if(!(C[i][j] == result[i][j])) {
+					elementIsNotThere++;
+				}
+			}
+		assertTrue(elementIsNotThere == 0, "A matrix 4x4 with the Mars troops locations was yield");
+	}
+	@Test
+	public void strassen2() {
+		setupStage2();
+		try {
+			predictor.standardMultiply(A, B);
+			fail("A exception was waited");
+		} catch (Exception e) {			
+		}
+	}
+}	
