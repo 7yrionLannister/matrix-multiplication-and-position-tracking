@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-public class DivideAndConquerTest {
+public class PredictorTest {
 	private Predictor predictor; 
-	private int[][] A;
-	private int[][] B;
+	private long[][] A;
+	private long[][] B;
 
 	public void setupStage1() {
 		predictor = new Predictor();
-		A = new int[3][3];
-		B = new int[3][3];
+		A = new long[3][3];
+		B = new long[3][3];
 		A[0][0] = -18;     B[0][0] = 4;
 		A[1][0] = 8;	   B[1][0] = 5;
 		A[2][0] = 11;	   B[2][0] = 11;
@@ -28,8 +28,8 @@ public class DivideAndConquerTest {
 
 	public void setupStage2() {
 		predictor = new Predictor();
-		A = new int[4][3];
-		B = new int[4][3];
+		A = new long[4][3];
+		B = new long[4][3];
 		A[0][0] = 4;       B[0][0] = 8;
 		A[1][0] = 9;	   B[1][0] = 4;
 		A[2][0] = 3;	   B[2][0] = 1;
@@ -46,8 +46,8 @@ public class DivideAndConquerTest {
 
 	public void setupStage3() {
 		predictor = new Predictor();
-		A = new int[4][4];
-		B = new int[4][4];
+		A = new long[4][4];
+		B = new long[4][4];
 		A[0][0] = 16;      B[0][0] = 5;
 		A[1][0] = -6;	   B[1][0] = 5;
 		A[2][0] = 2;	   B[2][0] = 13;
@@ -71,8 +71,8 @@ public class DivideAndConquerTest {
 		setupStage1();
 		int rows = 60;
 		int cols = 60;
-		int [][] C = predictor.generateRandomMatrix(rows, cols, false);
-		ArrayList<Integer> trail = new ArrayList<>();
+		long [][] C = predictor.generateRandomMatrix(rows, cols, false);
+		ArrayList<Long> trail = new ArrayList<>();
 		for(int i = 0; i < rows; i++) 
 			for(int j = 0; j< cols; j++) {
 				if(!trail.contains(C[i][j])) {
@@ -87,7 +87,7 @@ public class DivideAndConquerTest {
 	@Test
 	public void standardMultiplyWithValidInput() {
 		setupStage1();
-		int[][] result = new int[3][3];
+		long[][] result = new long[3][3];
 		result [0][0] = 80;
 		result [1][0] = 91;
 		result [2][0] = 197;
@@ -97,7 +97,7 @@ public class DivideAndConquerTest {
 		result [0][2] = -1247;
 		result [1][2] = 600;
 		result [2][2] = 824;	
-		int[][] C = predictor.standardMultiply(A, B);
+		long[][] C = predictor.standardMultiply(A, B);
 
 		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
 		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");
@@ -140,7 +140,7 @@ public class DivideAndConquerTest {
 		result [1][3] = 5;
 		result [2][3] = 70;
 		result [3][3] = 360;
-		int[][] C = predictor.divideAndConquerMultiply(A, B);
+		long[][] C = predictor.divideAndConquerMultiply(A, B);
 		
 		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
 		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");
@@ -173,7 +173,7 @@ public class DivideAndConquerTest {
 	@Test
 	public void strassenMultiplyWithValidInput() {
 		setupStage3();
-		int [][] result = new int[4][4];
+		long [][] result = new long[4][4];
 		result [0][0] = 216;
 		result [1][0] = 74;
 		result [2][0] = 90;
@@ -190,7 +190,7 @@ public class DivideAndConquerTest {
 		result [1][3] = 5;
 		result [2][3] = 70;
 		result [3][3] = 360;
-		int[][] C = predictor.strassenMultiply(A, B);
+		long[][] C = predictor.strassenMultiply(A, B);
 		
 		assertTrue(C != null, "A matrix with the Mars troops locations was expected");
 		assertTrue(C.length == A.length && C[0].length == B[0].length, "The matrix is not of the right size");

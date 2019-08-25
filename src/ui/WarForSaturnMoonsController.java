@@ -43,10 +43,10 @@ public class WarForSaturnMoonsController {
     private GridPane matrixB;
     /**It represents the matrix with last Mars troops positions reported.
    	 */
-    private int[][] A;
+    private long[][] A;
     /**It represents the matrix which we will be able to find the new actual Mars troops positions.
    	 */
-    private int[][] B;
+    private long[][] B;
     /**It represents an instance of Predictor class.
    	 */
     private Predictor predictor;
@@ -141,7 +141,7 @@ public class WarForSaturnMoonsController {
 	@FXML
 	public void multiplyButtonPressed(ActionEvent event) {
 		try {
-			int[][] result = null;
+			long[][] result = null;
 			switch((String)multiplicationMethod.getSelectedToggle().getUserData()) {
 			case Predictor.STANDARD:
 				result = predictor.standardMultiply(A, B);
@@ -173,7 +173,7 @@ public class WarForSaturnMoonsController {
 	/**This method shows the resulting matrix after multiplying A and B with the actual Mars troops coordinates underlined.
 	 * @param result A matrix that was yield after multiplying A and B.
    	 */
-	public void showResult(int[][] result) {
+	public void showResult(long[][] result) {
 		GridPane g = new GridPane();
 		ScrollPane sp = new ScrollPane(g);
 		Scene s = new Scene(sp);
@@ -196,7 +196,7 @@ public class WarForSaturnMoonsController {
 					box.setStyle("-fx-background-color: BurlyWood");
 				}
 				g.add(box, j, i);
-				boolean prime = predictor.isPrime(A[i][j]);
+				boolean prime = predictor.isPrime(result[i][j]);
 				if(prime) {
 					box.setTextFill(Color.RED);
 					box.setStyle(box.getStyle()+";-fx-font-weight: bold;");
