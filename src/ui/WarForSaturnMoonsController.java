@@ -47,9 +47,12 @@ public class WarForSaturnMoonsController {
     /**It represents the matrix which we will be able to find the new actual Mars troops positions.
    	 */
     private int[][] B;
-    
+    /**It represents an instance of Predictor class.
+   	 */
     private Predictor predictor;
     
+    /**This method initializes all the objects needed.
+   	 */
 	@FXML
 	public void initialize() {
 		predictor = new Predictor();
@@ -69,7 +72,9 @@ public class WarForSaturnMoonsController {
 		matrixB = new GridPane();
 		matrixBScrollPane.setContent(matrixB);
 	}
-	
+	/**This method generates the matrix A specifying its dimension through the interface.
+	 * @param event An ActionEvent that represents the event when the associated generateMatrix button is pressed.
+   	 */
 	@FXML
 	public void generateMatrixAButtonPressed(ActionEvent event) {
 		matrixA.getChildren().clear();
@@ -101,7 +106,9 @@ public class WarForSaturnMoonsController {
 			showWarning("Please provide all the data required to generate the matrix");
 		}
 	}
-	
+	/**This method generates the matrix B specifying its dimension through the interface.
+	 * @param event An ActionEvent that represents the event when the associated generateMatrix button is pressed.
+   	 */
 	@FXML
 	public void generateMatrixBButtonPressed(ActionEvent event) {
 		matrixB.getChildren().clear();
@@ -128,6 +135,9 @@ public class WarForSaturnMoonsController {
 			showWarning("Please provide all the data required to generate the matrix");
 		}
 	}
+	/**This method multiplies the matrices A and B which were generated previously.
+	 * @param event An ActionEvent that represents the event when the associated multiply button is pressed.
+   	 */
 	@FXML
 	public void multiplyButtonPressed(ActionEvent event) {
 		try {
@@ -149,16 +159,21 @@ public class WarForSaturnMoonsController {
 		} catch(NullPointerException npe) {
 			System.out.println(npe.getStackTrace());
 			showWarning("Please make sure you have generated both matrices");
-		}
+		} 
 	}
-	
+	/**This method shows a warning message indicating such that the matrices A and B have incorrect dimensions or one or
+	 * both matrices are empty.
+	 * @param msg A String that represents the event when the associated generateMatrix button is pressed.
+   	 */
 	public void showWarning(String msg) {
 		Alert a = new Alert(AlertType.WARNING);
 		a.setContentText(msg);
 		a.showAndWait();
 	}
-	
-	public void showResult(int[][] result) {System.out.println("ssss");
+	/**This method shows the resulting matrix after multiplying A and B with the actual Mars troops coordinates underlined.
+	 * @param result A matrix that was yield after multiplying A and B.
+   	 */
+	public void showResult(int[][] result) {
 		GridPane g = new GridPane();
 		ScrollPane sp = new ScrollPane(g);
 		Scene s = new Scene(sp);
