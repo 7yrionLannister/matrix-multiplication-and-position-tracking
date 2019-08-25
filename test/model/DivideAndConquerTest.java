@@ -22,6 +22,7 @@ class DivideAndConquerTest {
 		A[2][0] = 7;       B[2][0] = 73;
 		A[2][1] = 4;       B[2][1] = 4;
 		A[2][2] = 13;      B[2][1] = 1;
+
 	}
 	public void setupStage2() {
 		predictor = new Predictor();
@@ -80,13 +81,19 @@ class DivideAndConquerTest {
 	}
 
 	@Test
-<<<<<<< HEAD
 	void standardMultiply1() {
 		setupStage1();
-=======
-	public void standardMultiply1() {
-
->>>>>>> b703b0a4ac665e31819a09ab5065f96ba5dbee66
+		int[][] result = new int[3][3];
+		result [0][0] = 1027;
+		result [0][1] = -150;
+		result [0][2] = -171;
+		result [1][0] = 317;
+		result [1][1] = 44;
+		result [1][2] = 173;
+		result [2][0] = 1125;
+		result [2][1] = 35;
+		result [2][2] = 98;
+		
+		predictor.standardMultiply(A, B);
 	}
-
 }
