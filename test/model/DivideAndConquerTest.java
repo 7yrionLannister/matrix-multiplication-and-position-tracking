@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
-
-class DivideAndConquerTest {
+ 
+public class DivideAndConquerTest {
 	private Predictor predictor; 
 	private int[][] A;
 	private int[][] B;
