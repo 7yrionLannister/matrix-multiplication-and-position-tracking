@@ -98,7 +98,7 @@ public class WarForSaturnMoonsController {
 	public void generateMatrixAButtonPressed(ActionEvent event) {
 		matrixA.getChildren().clear();
 		if(!rowsATextField.getText().isEmpty() && !colsATextField.getText().isEmpty()) {
-			A = predictor.randomMatrix(Integer.parseInt(rowsATextField.getText()), Integer.parseInt(colsATextField.getText()), (boolean)switchA.getSelectedToggle().getUserData());
+			A = predictor.generateRandomMatrix(Integer.parseInt(rowsATextField.getText()), Integer.parseInt(colsATextField.getText()), (boolean)switchA.getSelectedToggle().getUserData());
 			Label box;
 			for(int i = 0; i < A.length; i++) {
 				int evenOrOdd = i;
@@ -130,7 +130,7 @@ public class WarForSaturnMoonsController {
 	public void generateMatrixBButtonPressed(ActionEvent event) {
 		matrixB.getChildren().clear();
 		if(!rowsBTextField.getText().isEmpty() && !colsBTextField.getText().isEmpty()) {
-			B = predictor.randomMatrix(Integer.parseInt(rowsBTextField.getText()), Integer.parseInt(colsBTextField.getText()), (boolean)switchB.getSelectedToggle().getUserData());
+			B = predictor.generateRandomMatrix(Integer.parseInt(rowsBTextField.getText()), Integer.parseInt(colsBTextField.getText()), (boolean)switchB.getSelectedToggle().getUserData());
 			Label box;
 			for(int i = 0; i < B.length; i++) {
 				int evenOrOdd = i;

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class DivideAndConquerTest {
 	private Predictor predictor; 
-	
+
 	public void setupStage1() {
 		predictor = new Predictor();
 		int [][] A = new int[3][3];
@@ -62,28 +62,31 @@ class DivideAndConquerTest {
 		A[3][3] = 6;       B[3][3] = 1;
 	}
 	@Test
-	void randomMatrix() {
+	public void generateRandomMatrixWithoutRepeatedValues() {
 		setupStage1();
-		int [][] C = predictor.randomMatrix(100, 100, false);
-		int totalElements = 0;
-		int repeatedElements = 0;
-		for(int i = 0; i < C.length; i++) 
-			for(int j = 0; j< C[i].length; j++) {
-				ArrayList<Integer> repeated = new ArrayList<>();
-				if(!repeated.contains(C[i][j])) {
-					repeated.add(C[i][j]);
+		int rows = 60;
+		int cols = 60;
+		int [][] C = predictor.generateRandomMatrix(rows, cols, false);
+		ArrayList<Integer> trail = new ArrayList<>();
+		for(int i = 0; i < rows; i++) 
+			for(int j = 0; j< cols; j++) {System.out.println(i + " " + j);
+				if(!trail.contains(C[i][j])) {
+					trail.add(C[i][j]);
 				} else {
-					repeatedElements++;
+					fail("A repeated element was found: " + C[i][j]);
 				}
-				System.out.println(C[i][j]);
-				totalElements++;
 			}
-		System.out.println(repeatedElements);
-		assertTrue(totalElements == 10000 && repeatedElements == 0, "A matrix 3x3 was created with repeated values");
-		}
+		assertTrue(trail.size() == (rows*cols) && C.length == rows && C[0].length == cols, "The matrix was created without repeated values but the size does not correspond to the requested");
+	}
+
 	@Test
+<<<<<<< HEAD
 	void standardMultiply1() {
 		setupStage1();
+=======
+	public void standardMultiply1() {
+
+>>>>>>> b703b0a4ac665e31819a09ab5065f96ba5dbee66
 	}
 
 }
